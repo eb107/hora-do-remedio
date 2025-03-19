@@ -1,0 +1,76 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* Define a base para rem */
+}
+
+body {
+    line-height: 1.5; /* Melhora a legibilidade */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; /* Define uma fonte padrão */
+    background-image: linear-gradient(to bottom, #00FA9A, #0000ff);
+    height: 100vh;
+}
+
+/* Outros resets podem ser adicionados conforme necessário */
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 2%;
+    color: white;
+    text-shadow: 
+    -1px -1px 2px rgba(0, 0, 0, 0.5),  
+    1px -1px 2px rgba(0, 0, 0, 0.5),
+    -1px 1px 2px rgba(0, 0, 0, 0.5),
+    1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    display: flex;
+    gap: 80px;
+    padding-left: 10%;
+    padding-top: 40px;
+    padding-right: 20%;
+    padding-bottom: 40px;
+}
+
+.imageApp {
+    background-color: #F0FFF0;
+    border-radius: 10%;
+    border: outset #6495ed;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.imageApp:hover {
+    background-color: #E6E6FA;
+    transform: ease 1s;
+    cursor: pointer;
+}
+
+.imageApp img {
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.textApp {
+    width: 120px; /* Largura do contêiner */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Quebra palavras longas */
+    margin-left: 3%;
+    margin-top: 5%;
+}
+
+p {
+    color: white;
+    font-weight: bold;
+}
