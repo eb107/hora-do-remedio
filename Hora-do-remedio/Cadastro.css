@@ -1,9 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body {
     line-height: 1.5; /* Melhora a legibilidade */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; /* Define uma fonte padrão */
+    font-family: 'Open Sans', sans-serif;
     background-image: linear-gradient(to bottom, #00FA9A, #0000ff);
     height: 100vh;
   }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    margin-top: 3%;
+}
 
 .formularioMedicamentos {
     background-color: rgba(255, 255, 255, 0.3);
@@ -11,12 +27,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5%;
-    margin: 5% auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    margin-top: 5px;
     max-width: 30%;
     border-radius: 15px;
     border: inset white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
@@ -24,18 +43,45 @@ h1 {
     font-size: 1.5em;
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-}
-
 .nomeRemedio {
     width: 100%;
     padding: 5px;
-    margin: 10px 0;
-    border-radius: 10px;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    border-radius: 5px;
+    height: 25px;
+    padding: 2%;
+}
+
+.containerValidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.containerQuantidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.primeiroHorario {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.segundoHorario {
+    display: flex;
+    justify-content: center;
 }
 
 select {
@@ -45,8 +91,19 @@ select {
     border-radius: 10px;
 }
 
+.descricao {
+    margin-top: 2%;
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    resize: vertical;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
 .button_adicionar {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -71,19 +128,20 @@ button:hover {
 @media (max-width: 600px) {
     h1 {
         font-size: 1.2em; /* Tamanho da fonte menor em telas pequenas */
+        margin-top: 50px;
     }
 
-    h2 {
+    h3 {
         font-size: 1em; /* Tamanho da fonte menor em telas pequenas */
     }
 
     .formularioMedicamentos {
         padding: 10%; /* Aumenta o preenchimento em telas pequenas */
-        margin-top: 20%;
         max-width: 90%;
     }
 
     button {
         height: 30px; /* Aumenta a altura do botão em telas pequenas */
+        margin-left: 16%;
     }
 }
