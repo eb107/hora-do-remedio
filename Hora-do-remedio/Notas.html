@@ -9,13 +9,89 @@
 <body>
     <div class='container_Notas'>
         <h2>Marque se já tomou seu remédio</h2>
-            <div class='container_Cadastrados'>   
-                <label class="switch">
-                    <input type="checkbox" id="flag" name="flag" />
-                    <span class="slider"></span>
-                </label>
-                <p class='nome_Remedio'>Nenhum remédio cadastrado</p> 
-            </div>
+            <div class='container_Cadastrados' id="medicamentosContainer" ></div>
     </div>
+
+    <audio id="audioNotificacao" src="/Hora-do-remedio/Áudio do WhatsApp de 2025-04-05 à(s) 17.36.58_1974919c.dat.unknown" preload="auto" ></audio>
+
+    <script>
+        function fetchMedicamentos() {
+            fetch('http://localhost:3000/api/medicamentos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na rede');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const medicamentosContainer = document.getElementById('medicamentosContainer');
+
+                    // Limpa o contêiner antes de adicionar novos medicamentos
+                    medicamentosContainer.innerHTML = '';
+                    
+                    if (data.length === 0) {
+                        const mensagem = document.createElement('p');
+                        mensagem.textContent = 'Nenhum remédio cadastrado';
+                        medicamentosContainer.appendChild(mensagem);
+                    } else {
+                        data.forEach(medicamento => {
+                            // Cria uma nova div para cada medicamento
+                            const medicamentoDiv = document.createElement('div');
+                            medicamentoDiv.className = 'medicamento'; // Classe para estilização
+
+                            // Adiciona o CheckBox
+                            const label = document.createElement('label');
+                            label.className = 'switch';
+                            const checkbox = document.createElement('input');
+                            checkbox.type = 'checkbox';
+                            checkbox.id = `checkbox - ${medicamento.id}`; // Cada medicamento tem um ID único
+                            label.appendChild(checkbox);
+
+
+                            const span = document.createElement('span');
+                            span.className = 'slider';
+                            label.appendChild(span);
+
+
+                            label.appendChild(document.createTextNode(' ')); // Espaço entre o checkbox e o texto
+                            
+
+                            // Adiciona o texto do medicamento
+                            const textoMedicamento = document.createElement('span');
+                            textoMedicamento.className = 'nomeRemedio';
+                            textoMedicamento.textContent = `${medicamento.nome} - Horarios: ${medicamento.horario1}${medicamento.horario2 ? ', ' + medicamento.horario2 : ''}`;
+
+                            // Adiciona o checkbox e o texto a uma nova div
+                            medicamentoDiv.appendChild(label);
+                            medicamentoDiv.appendChild(textoMedicamento);
+
+                            // Adiciona a nova div ao contâiner de medicamentos
+                            medicamentosContainer.appendChild(medicamentoDiv);
+
+                            // Adiciona um evento de escuta ao checkbox
+                            checkbox.addEventListener('change', function() {
+                                if(this.checked) {
+                                    // Toca o som
+                                    document.getElementById('audioNotificacao').play();
+                                    // Mostra a notificação
+                                    alert(`Parabéns! Você tomou seu ${medicamento.nome} no horário certo.`);
+                                }
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar medicamentos:', error);
+                    const remedioText = document.createElement('p');
+                    remedioText.textContent = 'Erro ao carregar medicamentos'; // Mensagem de erro
+                    document.getElementById('medicamentosContainer').appendChild(remedioText);
+                });
+        }
+
+        // Chama a função para buscar medicamentos ao carregar a página
+        window.onload = fetchMedicamentos;
+    </script>
+    
+
 </body>
 </html>

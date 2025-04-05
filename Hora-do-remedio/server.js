@@ -42,6 +42,33 @@ app.post('/api/cadastrar', (req, res) => {
     });
 });
 
+
+// Rota para obter medicamentos e horarios cadastrados (GET)
+app.get('/api/medicamentos', (req, res) => {
+    const sql = 'SELECT nome, horario1, horario2 FROM cadastromedicamentos';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Erro ao buscar medicamentos:', err);
+            return res.status(500).json({ message: 'Erro ao buscar medicamentos' });
+        }
+        res.status(200).json(result); // Retorna os resultados
+    });
+});
+
+
+// Rota para obter descrição cadastrados (GET)
+app.get('/api/descricao', (req, res) => {
+    const sql = 'SELECT nome, descricao FROM cadastromedicamentos';
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Erro ao buscar medicamentos:', err);
+            return res.status(500).json({ message: 'Erro ao buscar medicamentos' });
+        }
+        res.status(200).json(result); // Retorna os resultados
+    });
+});
+
+
 // Iniciar o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
