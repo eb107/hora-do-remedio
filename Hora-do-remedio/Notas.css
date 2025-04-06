@@ -11,6 +11,13 @@ body {
     height: 100vh;
   }
 
+  @media (max-width: 600px) {
+    body {
+      overflow: hidden;
+    }
+  }
+  
+
 .container_Notas {
     display: flex;
     flex-direction: column;
@@ -29,6 +36,22 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.containerRemLix {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imagemLixeira {
+    padding-top: 5px;
+    height: 50px;
+}
+
+.imagemLixeira:hover {
+    cursor: pointer;
 }
 
 .container_Cadastrados {
@@ -57,6 +80,7 @@ h2 {
     color: black;
     font-weight: bold;
     font-size: large;
+    margin-top: 15px;
 }
 
 p {
@@ -68,7 +92,7 @@ p {
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-top: 4px;
+    margin-top: 10px;
 }
 
 .switch input {
@@ -129,12 +153,30 @@ input:checked + .slider:before {
         width: 90%;
     }
 
+    .medicamento {
+        display: grid;
+        justify-content: space-around;
+        justify-items: center;
+        padding: 20px;
+    }
+
+    .nomeRemedio {
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .imagemLixeira {
+        height: 40px;
+        margin-top: 15px;
+    }
+
     .switch {
         position: relative;
         display: inline-block;
         width: 40px;
         height: 20px;
         margin-top: 1px;
+        margin-bottom: 10px;
     }
 
     .slider {

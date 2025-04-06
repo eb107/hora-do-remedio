@@ -14,6 +14,8 @@
 
     <audio id="audioNotificacao" src="/Hora-do-remedio/Áudio do WhatsApp de 2025-04-05 à(s) 17.36.58_1974919c.dat.unknown" preload="auto" ></audio>
 
+
+
     <script>
         function fetchMedicamentos() {
             fetch('http://localhost:3000/api/medicamentos')
@@ -35,9 +37,19 @@
                         medicamentosContainer.appendChild(mensagem);
                     } else {
                         data.forEach(medicamento => {
+
+                            // Cria um div para as informações do remédio e o ícone da lixeira
+                            const infoRemLixDiv = document.createElement('div');
+                            infoRemLixDiv.className = 'containerRemLix';
+
+
+
                             // Cria uma nova div para cada medicamento
                             const medicamentoDiv = document.createElement('div');
                             medicamentoDiv.className = 'medicamento'; // Classe para estilização
+
+                            infoRemLixDiv.appendChild(medicamentoDiv);
+
 
                             // Adiciona o CheckBox
                             const label = document.createElement('label');
@@ -65,8 +77,43 @@
                             medicamentoDiv.appendChild(label);
                             medicamentoDiv.appendChild(textoMedicamento);
 
+                            // Adiciona o link para excluir as informações do medicamento
+                            const linkLixeira = document.createElement('a');
+                            const imagemLinkLixeira = document.createElement('img');
+                            imagemLinkLixeira.className = 'imagemLixeira';
+                            imagemLinkLixeira.src = './images/lixeira-removebg-preview.png';
+
+                            // Função para confirmar e excluir o medicamento
+                            function confirmarExclusao(id) {
+                                const confirmacao = confirm('Deseja realmente excluir este medicamento?');
+
+                                if(confirmacao) {
+                                    fetch(`http://localhost:3000/api/deletar/${id}`, {
+                                        method: 'DELETE'
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        alert(data.mensagem);
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro', error);
+                                        alert('Ocorreu um erro ao tentar excluir o medicamento.');
+                                    });
+                                };
+                            }
+
+                            // Chamar função para deletar o medicamento
+                            imagemLinkLixeira.addEventListener('click', function() {
+                                confirmarExclusao(medicamento.id);
+                            });
+                            
+                            linkLixeira.appendChild(imagemLinkLixeira);
+                            medicamentoDiv.appendChild(linkLixeira);
+
+
                             // Adiciona a nova div ao contâiner de medicamentos
-                            medicamentosContainer.appendChild(medicamentoDiv);
+                            medicamentosContainer.appendChild(infoRemLixDiv);
+
 
                             // Adiciona um evento de escuta ao checkbox
                             checkbox.addEventListener('change', function() {
@@ -87,6 +134,8 @@
                     document.getElementById('medicamentosContainer').appendChild(remedioText);
                 });
         }
+
+        
 
         // Chama a função para buscar medicamentos ao carregar a página
         window.onload = fetchMedicamentos;

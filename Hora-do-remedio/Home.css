@@ -15,14 +15,20 @@
     background-image: linear-gradient(to bottom, #00FA9A, #0000ff);
     height: 100vh;
   }
+
+  @media (max-width: 600px) {
+    body {
+      overflow: hidden;
+    }
+  }
   
   /* Outros resets podem ser adicionados conforme necessário */
   
   .title {
     display: flex;
     flex-direction: column;
-    margin-left: 10%;
     margin-top: 2%;
+    margin-left: 10%;
     color: white;
     text-shadow: 
     -1px -1px 2px rgba(0, 0, 0, 0.5),  
@@ -74,7 +80,6 @@
       width: 90px;
       align-items: center;
       justify-content: center;
-      margin-left: 10%;
     }
   
   }
@@ -102,7 +107,6 @@
     width: 120px; /* Largura do contêiner */
     word-wrap: break-word; /* Quebra palavras longas */
     overflow-wrap: break-word; /* Quebra palavras longas */
-    margin-left: 3%;
     margin-top: 5%;
   }
   
@@ -117,6 +121,7 @@
       align-items: center;
       justify-items: center;
       font-size: 10px;
+      text-align: center;
     }
   }
 
@@ -125,6 +130,7 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      align-items: center;
     }
   }
 
@@ -136,5 +142,13 @@
     h3 {
       font-size: 10px;
       margin-top: 5px;
+    }
+
+    .title {
+      text-align: center;
+      margin-top: 5%;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
     }
   }

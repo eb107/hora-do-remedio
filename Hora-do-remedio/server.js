@@ -68,6 +68,19 @@ app.get('/api/descricao', (req, res) => {
     });
 });
 
+// Rota deletar medicamentos cadastrados
+app.get('/api/deletar/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = 'DELETE FROM cadastromedicamentos WHERE id = ?';
+
+    db.query(sql, [id], (err, result) => {
+        if(err) {
+            return res.status(500).json({ message: 'Erro ao excluir o medicamento'});
+        }
+        return res.status(200).json({ message: 'Medicamento excluído com sucesso' });
+    });
+});
+
 
 // Iniciar o servidor
 app.listen(port, () => {
