@@ -28,6 +28,21 @@ db.connect(err => {
     console.log('Conectado ao banco de dados MySQL');
 });
 
+// Rota para cadastrar usuarios
+app.post('/api/usuarios', (req, res) => {
+    const { nome, idade, peso, altura, email, telefone, observacao } = req.body;
+
+    const sql = 'INSERT INTO usuario (nome, idade, peso, altura, email, telefone, observacao) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [nome, idade, peso, altura, email, telefone, observacao], (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar usuário:', err);
+            return res.status(500).json({ message: 'Erro ao cadastrar usuário' });
+        }
+        res.status(200).json({ message: 'Usuário cadastrado com sucesso!' });
+    });
+});
+
+
 // Rota para cadastrar medicamentos
 app.post('/api/cadastrar', (req, res) => {
     const { nome, validade, quantidade, horario1, horario2, descricao } = req.body;
@@ -45,7 +60,7 @@ app.post('/api/cadastrar', (req, res) => {
 
 // Rota para obter medicamentos e horarios cadastrados (GET)
 app.get('/api/medicamentos', (req, res) => {
-    const sql = 'SELECT nome, horario1, horario2 FROM cadastromedicamentos';
+    const sql = 'SELECT id, nome, validade, quantidade, horario1, horario2, descricao FROM cadastromedicamentos';
     db.query(sql, (err, result) => {
         if (err) {
             console.error('Erro ao buscar medicamentos:', err);
@@ -69,7 +84,7 @@ app.get('/api/descricao', (req, res) => {
 });
 
 // Rota deletar medicamentos cadastrados
-app.get('/api/deletar/:id', (req, res) => {
+app.delete('/api/deletar/:id', (req, res) => {
     const id = req.params.id;
     const sql = 'DELETE FROM cadastromedicamentos WHERE id = ?';
 
