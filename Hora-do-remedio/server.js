@@ -28,6 +28,7 @@ db.connect(err => {
     console.log('Conectado ao banco de dados MySQL');
 });
 
+
 // Rota para cadastrar usuarios
 app.post('/api/usuarios', (req, res) => {
     const { nome, idade, peso, altura, email, telefone, observacao } = req.body;

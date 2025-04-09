@@ -1,4 +1,4 @@
-document.getElementById('formularioUsuarios').addEventListener('submit', function(event) {
+document.getElementById('usuarioForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const nome = document.getElementById('nome').value;
@@ -13,14 +13,14 @@ document.getElementById('formularioUsuarios').addEventListener('submit', functio
     fetch('http://localhost:3000/api/usuarios', {
         method: 'POST',
         headers: {
-            'content-Type' : 'application/json'
+            'Content-Type' : 'application/json'
         },
         body: JSON.stringify({ nome, idade, peso, altura, email, telefone, observacao })
     })
     .then(response => response.json())
     .then(data => {
         alert(data.message);
-        document.getElementById('formularioUsuarios').reset();
+        document.getElementById('usuarioForm').reset();
     })
     .catch(error => console.error('Erro:', error));
 });
