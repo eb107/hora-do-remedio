@@ -1,3 +1,5 @@
+let intervalId;
+
 function fetchMedicamentos() {
     fetch('http://localhost:3000/api/medicamentos')
         .then(response => {
@@ -17,23 +19,32 @@ function fetchMedicamentos() {
                 mensagem.textContent = 'Nenhum remédio cadastrado';
                 medicamentosContainer.appendChild(mensagem);
             } else {
+                    // Verifica o horário atual a cada 60 segundos
+                    intervalId = setInterval(() => {
+                        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'});
+
+                        // Verifica se o horário do medicamento é igual ao horário atual e mostra a mensagem
+                        data.forEach(medicamento => {
+                        const horarios = [medicamento.horario1, medicamento.horario2].filter(Boolean); // Filtra horários não definidos
+                        if (horarios.includes(currentTime)) {
+                            document.getElementById('audioNot').play();
+                            alert(`É hora de tomar seu ${medicamento.nome}!`);};
+                        });
+                    }, 6000);
+
                 data.forEach(medicamento => {
                     
                     console.log(medicamento)
-                    console.log(medicamento.id);
 
                     // Cria um div para as informações do remédio e o ícone da lixeira
                     const infoRemLixDiv = document.createElement('div');
                     infoRemLixDiv.className = 'containerRemLix';
-
-
 
                     // Cria uma nova div para cada medicamento
                     const medicamentoDiv = document.createElement('div');
                     medicamentoDiv.className = 'medicamento'; // Classe para estilização
 
                     infoRemLixDiv.appendChild(medicamentoDiv);
-
 
                     // Adiciona o CheckBox
                     const label = document.createElement('label');
@@ -43,14 +54,11 @@ function fetchMedicamentos() {
                     checkbox.id = `checkbox-${medicamento.id}`; // Cada medicamento tem um ID único
                     label.appendChild(checkbox);
 
-
                     const span = document.createElement('span');
                     span.className = 'slider';
                     label.appendChild(span);
 
-
-                    label.appendChild(document.createTextNode(' ')); // Espaço entre o checkbox e o texto
-                    
+                    label.appendChild(document.createTextNode(' ')); // Espaço entre o checkbox e o texto                   
 
                     // Adiciona o texto do medicamento
                     const textoMedicamento = document.createElement('span');
@@ -59,7 +67,7 @@ function fetchMedicamentos() {
 
                     // Adiciona o checkbox e o texto a uma nova div
                     medicamentoDiv.appendChild(label);
-                    medicamentoDiv.appendChild(textoMedicamento);
+                    medicamentoDiv.appendChild(textoMedicamento);                   
 
                     // Adiciona o link para excluir as informações do medicamento
                     const linkLixeira = document.createElement('a');
@@ -99,14 +107,13 @@ function fetchMedicamentos() {
                     linkLixeira.appendChild(imagemLinkLixeira);
                     medicamentoDiv.appendChild(linkLixeira);
 
-
                     // Adiciona a nova div ao contâiner de medicamentos
                     medicamentosContainer.appendChild(infoRemLixDiv);
-
 
                     // Adiciona um evento de escuta ao checkbox
                     checkbox.addEventListener('change', function() {
                         if(this.checked) {
+                            clearInterval(intervalId);
                             // Toca o som
                             document.getElementById('audioNotificacao').play();
                             // Mostra a notificação
@@ -123,8 +130,6 @@ function fetchMedicamentos() {
             document.getElementById('medicamentosContainer').appendChild(remedioText);
         });
 }
-
-
 
 // Chama a função para buscar medicamentos ao carregar a página
 window.onload = fetchMedicamentos;

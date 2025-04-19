@@ -33,7 +33,7 @@ db.connect(err => {
 app.post('/api/usuarios', (req, res) => {
     const { nome, idade, peso, altura, email, telefone, observacao } = req.body;
 
-    const sql = 'INSERT INTO usuario (nome, idade, peso, altura, email, telefone, observacao) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO usuarios (nome, idade, peso, altura, email, telefone, observacao) VALUES (?, ?, ?, ?, ?, ?, ?)';
     db.query(sql, [nome, idade, peso, altura, email, telefone, observacao], (err, result) => {
         if (err) {
             console.error('Erro ao cadastrar usuário:', err);
