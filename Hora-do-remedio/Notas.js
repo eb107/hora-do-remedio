@@ -1,3 +1,4 @@
+
 let intervalId;
 
 function fetchMedicamentos() {
@@ -13,24 +14,25 @@ function fetchMedicamentos() {
 
             // Limpa o contêiner antes de adicionar novos medicamentos
             medicamentosContainer.innerHTML = '';
+
+             // Verifica o horário atual a cada 60 segundos
+             intervalId = setInterval(() => {
+                const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit'});
+
+                // Verifica se o horário do medicamento é igual ao horário atual e mostra a mensagem
+                data.forEach(medicamento => {
+                const horarios = [medicamento.frequencia1horario1, medicamento.frequencia2horario1, medicamento.frequencia2horario2, medicamento.frequencia3horario1, medicamento.frequencia3horario2, medicamento.frequencia3horario3].filter(Boolean); // Filtra horários não definidos
+                if (horarios.includes(currentTime)) {
+                    document.getElementById('audioNot').play();
+                    alert(`É hora de tomar seu ${medicamento.nome} - Dosagem: ${medicamento.dosagem1}`);};
+                });
+            }, 1000);
             
             if (data.length === 0) {
                 const mensagem = document.createElement('p');
                 mensagem.textContent = 'Nenhum remédio cadastrado';
                 medicamentosContainer.appendChild(mensagem);
             } else {
-                    // Verifica o horário atual a cada 60 segundos
-                    intervalId = setInterval(() => {
-                        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'});
-
-                        // Verifica se o horário do medicamento é igual ao horário atual e mostra a mensagem
-                        data.forEach(medicamento => {
-                        const horarios = [medicamento.horario1, medicamento.horario2].filter(Boolean); // Filtra horários não definidos
-                        if (horarios.includes(currentTime)) {
-                            document.getElementById('audioNot').play();
-                            alert(`É hora de tomar seu ${medicamento.nome}!`);};
-                        });
-                    }, 6000);
 
                 data.forEach(medicamento => {
                     
@@ -46,7 +48,7 @@ function fetchMedicamentos() {
 
                     infoRemLixDiv.appendChild(medicamentoDiv);
 
-                    // Adiciona o CheckBox
+                    /* Adiciona o CheckBox
                     const label = document.createElement('label');
                     label.className = 'switch';
                     const checkbox = document.createElement('input');
@@ -58,16 +60,16 @@ function fetchMedicamentos() {
                     span.className = 'slider';
                     label.appendChild(span);
 
-                    label.appendChild(document.createTextNode(' ')); // Espaço entre o checkbox e o texto                   
+                    label.appendChild(document.createTextNode(' ')); // Espaço entre o checkbox e o texto*/               
 
                     // Adiciona o texto do medicamento
                     const textoMedicamento = document.createElement('span');
                     textoMedicamento.className = 'nomeRemedio';
-                    textoMedicamento.textContent = `${medicamento.nome} - Horarios: ${medicamento.horario1}${medicamento.horario2 ? ', ' + medicamento.horario2 : ''}`;
+                    textoMedicamento.textContent = `${medicamento.nome} - ${medicamento.frequencia}`;
 
-                    // Adiciona o checkbox e o texto a uma nova div
-                    medicamentoDiv.appendChild(label);
-                    medicamentoDiv.appendChild(textoMedicamento);                   
+                    /* Adiciona o checkbox e o texto a uma nova div
+                    medicamentoDiv.appendChild(label);*/
+                    medicamentoDiv.appendChild(textoMedicamento);                 
 
                     // Adiciona o link para excluir as informações do medicamento
                     const linkLixeira = document.createElement('a');
@@ -110,7 +112,7 @@ function fetchMedicamentos() {
                     // Adiciona a nova div ao contâiner de medicamentos
                     medicamentosContainer.appendChild(infoRemLixDiv);
 
-                    // Adiciona um evento de escuta ao checkbox
+                    /* Adiciona um evento de escuta ao checkbox
                     checkbox.addEventListener('change', function() {
                         if(this.checked) {
                             clearInterval(intervalId);
@@ -119,7 +121,7 @@ function fetchMedicamentos() {
                             // Mostra a notificação
                             alert(`Parabéns! Você tomou seu ${medicamento.nome} no horário certo.`);
                         }
-                    });
+                    });*/
                 });
             }
         })

@@ -26,11 +26,25 @@
   /* Outros resets podem ser adicionados conforme necessário */
 
 header {
+  display: flex;
   background: linear-gradient(90deg, #007bff, #00bcd4);
   height: 100px;
   border-radius: 0 0 20px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding-top: 10px;
+}
+
+header img {
+  margin-bottom: 1%;
+}
+
+@media (max-width: 600px) {
+  header img {
+    height: 50px;
+    margin-left: 1.5%;
+    margin-right: 3%;
+    margin-top: 4%;
+  }
 }
 
 
@@ -39,6 +53,7 @@ header {
     flex-direction: column;
     color: white;
     text-align: center;
+    margin-left: 29.2%;
   }
   
   @media (max-width: 600px) {
@@ -73,9 +88,25 @@ header {
     justify-content: center;
     text-decoration: none;
   }
+
+  .fa-clock {
+    background-color: #F0FFF0;
+    border-radius: 10%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
   
   @media (max-width: 600px) {
     .imageApp {
+      width: 80px;
+      height: 80px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fa-clock {
       width: 80px;
       height: 80px;
       align-items: center;
@@ -89,11 +120,25 @@ header {
     transform: ease 1s;
     cursor: pointer;
   }
+
+  .fa-clock:hover {
+    background-color: #E6E6FA;
+    transform: ease 1s;
+    cursor: pointer;
+  }
   
   .imageApp img {
     height: 100px;
     align-items: center;
     justify-content: center;
+  }
+
+  .fa-clock img {
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    margin-top: 2px;
   }
   
   @media (max-width: 600px) {
@@ -103,6 +148,13 @@ header {
       margin-left: 5px;
       margin-top: 5px;
     }
+
+    .fa-clock img {
+      width: 70px;
+      height: 70px;
+      margin-left: 0;
+      margin-top: 5px;
+    }
   }
   
   .textApp {
@@ -110,6 +162,7 @@ header {
     word-wrap: break-word; /* Quebra palavras longas */
     overflow-wrap: break-word; /* Quebra palavras longas */
     margin-top: 5%;
+    text-align: center;
   }
   
   .textApp p {
@@ -125,6 +178,10 @@ header {
       justify-items: center;
       font-size: 10px;
       text-align: center;
+    }
+
+    .textApp p {
+      font-size: 10px;
     }
   }
 

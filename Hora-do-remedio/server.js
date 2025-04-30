@@ -46,10 +46,10 @@ app.post('/api/usuarios', (req, res) => {
 
 // Rota para cadastrar medicamentos
 app.post('/api/cadastrar', (req, res) => {
-    const { nome, validade, quantidade, horario1, horario2, descricao } = req.body;
+    const { nome, validade, quantidade, frequencia, dosagem1, frequencia1horario1, dosagem2, frequencia2horario1, frequencia2horario2, dosagem3, frequencia3horario1, frequencia3horario2, frequencia3horario3, descricao } = req.body;
 
-    const sql = 'INSERT INTO cadastromedicamentos (nome, validade, quantidade, horario1, horario2, descricao) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [nome, validade, quantidade, horario1, horario2, descricao], (err, result) => {
+    const sql = 'INSERT INTO cadastromedicamentos (nome, validade, quantidade, frequencia, dosagem1, frequencia1horario1, dosagem2, frequencia2horario1, frequencia2horario2, dosagem3, frequencia3horario1, frequencia3horario2, frequencia3horario3, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,? )';
+    db.query(sql, [nome, validade, quantidade, frequencia, dosagem1, frequencia1horario1, dosagem2, frequencia2horario1, frequencia2horario2, dosagem3, frequencia3horario1, frequencia3horario2, frequencia3horario3, descricao], (err, result) => {
         if (err) {
             console.error('Erro ao cadastrar medicamento:', err);
             return res.status(500).json({ message: 'Erro ao cadastrar medicamento' });
@@ -61,7 +61,7 @@ app.post('/api/cadastrar', (req, res) => {
 
 // Rota para obter medicamentos e horarios cadastrados (GET)
 app.get('/api/medicamentos', (req, res) => {
-    const sql = 'SELECT id, nome, validade, quantidade, horario1, horario2, descricao FROM cadastromedicamentos';
+    const sql = 'SELECT id, nome, validade, quantidade, frequencia, dosagem1, frequencia1horario1, dosagem2, frequencia2horario1, frequencia2horario2, dosagem3, frequencia3horario1, frequencia3horario2, frequencia3horario3, descricao FROM cadastromedicamentos';
     db.query(sql, (err, result) => {
         if (err) {
             console.error('Erro ao buscar medicamentos:', err);
