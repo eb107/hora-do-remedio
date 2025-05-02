@@ -24,7 +24,7 @@ function fetchMedicamentos() {
                 const horarios = [medicamento.frequencia1horario1, medicamento.frequencia2horario1, medicamento.frequencia2horario2, medicamento.frequencia3horario1, medicamento.frequencia3horario2, medicamento.frequencia3horario3].filter(Boolean); // Filtra horários não definidos
                 if (horarios.includes(currentTime)) {
                     document.getElementById('audioNot').play();
-                    alert(`É hora de tomar seu ${medicamento.nome} - Dosagem: ${medicamento.dosagem1}`);};
+                    alert(`É hora de tomar seu ${medicamento.nome} - Dosagem: ${medicamento.dosagem}`);};
                 });
             }, 1000);
             

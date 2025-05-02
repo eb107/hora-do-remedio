@@ -38,9 +38,12 @@
                     <option>Personalizado</option>
                 </select>
 
+                <div id="containerDosagem" class="dos" style="display: none;">
+                    <label for="dosagem" class="dosagem">Dosagem</label>
+                    <input id="dosagem" type="text">
+                </div>
+
                 <div class="container1horario" id="container1horario" style="display: none;" >
-                    <label for="dosagem1" class="dosagem">Dosagem</label>
-                    <input id="dosagem1" type="text">
                     <label for="frequencia1horario1" class="horario" >Selecione um Horário:</label>
                     <select type="time" id="frequencia1horario1" name="1horario">
                         <option>00:00</option>
@@ -71,8 +74,6 @@
                 </div>
 
                 <div class="container2horario" id="container2horario" style="display: none;" >
-                    <label for="dosagem2" class="dosagem">Dosagem</label>
-                    <input id="dosagem2" type="text">
                     <label for="frequencia2horario1" class="horario" >Selecione seus Horários:</label>
                     <select type="time" id="frequencia2horario1" name="2horario">
                         <option>00:00</option>
@@ -130,8 +131,6 @@
                 </div>
                 
                 <div class="container3horario" id="container3horario" style="display: none;" >
-                    <label for="dosagem3" class="dosagem">Dosagem</label>
-                    <input id="dosagem3" type="text">
                     <label for="frequencia3horario1" class="horario" >Selecione seus Horários:</label>
                     <select type="time" id="frequencia3horario1" name="3horario" >
                         <option>00:00</option>
@@ -215,10 +214,7 @@
                     </select>
                 </div>
 
-                <div class="container_personalizado" id="personalizado" style="display: none;" >
-                    <label for="dosagem4" class="dosagem">Dosagem</label>
-                    <input id="dosagem4" type="text">
-                    
+                <div class="container_personalizado" id="personalizado" style="display: none;" >                    
                     <div>
                         <label for="personalizado" class="personalizado" >Selecione seus Horários:</label>
                         <input type="text">

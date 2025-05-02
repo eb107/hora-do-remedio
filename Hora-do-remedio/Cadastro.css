@@ -120,6 +120,15 @@ select {
     margin: 10px 0;
 }
 
+.dos {
+    width: 100%;
+}
+
+.dos input {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
 .container1horario {
     width: 100%;
 }
