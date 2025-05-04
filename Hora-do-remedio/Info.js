@@ -12,6 +12,10 @@ function fetchMedicamentos() {
             // Limpa o contêiner antes de adicionar novos medicamentos
             descricaoContainer.innerHTML = '';
 
+            document.getElementById('back').addEventListener('click', function() {
+                window.location.href = 'Home.html'
+            })
+
             if (data.length === 0) {
                 const mensagem = document.createElement('p');
                 mensagem.textContent = 'Nenhum remédio cadastrado';

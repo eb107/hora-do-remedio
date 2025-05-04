@@ -17,9 +17,12 @@
     height: 100vh;
   }
 
-  @media (max-width: 600px) {
-    body {
-      overflow: hidden;
-    }
+  header {
+    width: 100%;
+    padding: 2% 2% 0 2%;
+  }
+
+  header i:hover {
+    cursor: pointer;
   }
   

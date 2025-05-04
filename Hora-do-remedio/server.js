@@ -97,6 +97,18 @@ app.delete('/api/deletar/:id', (req, res) => {
     });
 });
 
+// Rota para editar quantidade em estoque
+app.put('/api/editarestoque/:id', (req, res) => {
+    const { quantidade } = req.body;
+    const id = req.params.id;
+    db.query('UPDATE cadastromedicamentos SET quantidade = ? WHERE id = ?', [quantidade, id], (err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Erro ao editar a quantidade' });
+        }
+        return res.status(200).json({ message: 'Quantidade atualizada com sucesso!' });
+    });
+});
+
 
 // Iniciar o servidor
 app.listen(port, () => {

@@ -24,3 +24,7 @@ document.getElementById('usuarioForm').addEventListener('submit', function(event
     })
     .catch(error => console.error('Erro:', error));
 });
+
+document.getElementById('back').addEventListener('click', function() {
+    window.location.href = 'Home.html';
+})
